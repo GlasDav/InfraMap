@@ -91,14 +91,13 @@ const addGeoJSONLayer = (data, type, subType, property, value, searchText, map) 
         let matchesProperty = false;
 
         // Check if the sub-type has a specific comparison requirement (e.g., range or numeric value)
-        if (file.comparison === 'range') {
-            const { minValue, maxValue } = file;
-            matchesProperty = feature.properties[file.property] >= minValue && feature.properties[file.property] < maxValue;
-        } else if (file.comparison === 'lt') {
-            matchesProperty = feature.properties[file.property] < file.value;
-        } else if (file.comparison === 'gte') {
-            matchesProperty = feature.properties[file.property] >= file.value;
-        } else if (file.value === 'Other') {
+        if (property === 'capacity_kv') {
+            const capacity = feature.properties[property];
+            if (value === '<132') matchesProperty = capacity < 132;
+            if (value === '>=132<220') matchesProperty = capacity >= 132 && capacity < 220;
+            if (value === '>=220<500') matchesProperty = capacity >= 220 && capacity < 500;
+            if (value === '>=500') matchesProperty = capacity >= 500;
+        } else if (value === 'Other') {
             // Handle 'Other' logic as you already have
             const specifiedValues = file.subTypes
                 .filter(sub => sub.value !== 'Other')
