@@ -98,15 +98,16 @@ const addGeoJSONLayer = (data, type, subType, property, value, searchText, map) 
             if (value === '>=220<500') matchesProperty = capacity >= 220 && capacity < 500;
             if (value === '>=500') matchesProperty = capacity >= 500;
         } else if (value === 'Other') {
-            // Handle 'Other' logic as you already have
+            // Collect all specified sub-type values for the current category
             const specifiedValues = file.subTypes
-                .filter(sub => sub.value !== 'Other')
+                .filter(sub => sub.value !== 'Other') // Exclude "Other" itself to avoid recursion
                 .map(sub => sub.value);
 
-            matchesProperty = !specifiedValues.includes(feature.properties[file.property]);
+            // Match only if the property value is NOT in the specified values
+            matchesProperty = !specifiedValues.includes(feature.properties[property]);
         } else {
-            // Default exact match for non-'Other' sub-types
-            matchesProperty = feature.properties[file.property] === file.value;
+            // Standard matching for non-"Other" sub-types
+            matchesProperty = feature.properties[property] === value;
         }
 
         // Adjust searchText to handle multiple terms
