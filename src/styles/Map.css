@@ -1,0 +1,44 @@
+.map-container {
+    display: flex;
+    height: 100vh; /* Ensure the container takes full height */
+    width: 100vw; /* Ensure the container takes full width */
+}
+
+#map {
+    flex-grow: 1;
+    height: 100%;
+    width: calc(100% - 200px); /* Adjust width to accommodate sidebar */
+    position: relative;
+}
+
+/* Legend style */
+.info.legend {
+    background-color: white;
+    padding: 10px;
+    line-height: 25px;
+    color: #333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    max-width: 100%; /* Optional limit to avoid overflow */
+    white-space: nowrap;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+    .info.legend h4 {
+        margin: 0 0 5px;
+        color: #777;
+        font-weight: bold;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+
+    .info.legend i {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-bottom: 5px;
+        margin-right: 8px;
+        opacity: 0.7;
+        background-size: contain;
+    }

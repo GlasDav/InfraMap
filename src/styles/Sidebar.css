@@ -1,0 +1,111 @@
+/* Sidebar.css */
+.sidebar {
+    width: 300px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Only sidebar content scrolls if needed */
+    position: relative;
+    z-index: 1000;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Ensures padding is included in the height */
+}
+
+    .sidebar h3 {
+        margin-top: 0;
+        text-align: left;
+    }
+
+    .sidebar button {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 8px;
+        background-color: grey;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+        text-align: left;
+    }
+
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+
+        .sidebar button.active {
+            background-color: #007bff;
+        }
+
+.sub-types {
+    margin-left: 15px;
+    text-align: left;
+}
+
+    .sub-types input {
+        margin-right: 5px;
+        text-align: left;
+    }
+
+.search-input {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between input and button */
+}
+
+    .search-input input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: fit-content;
+    }
+
+    .search-input button {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        height: inherit;
+    }
+
+        .search-input button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-input button:active {
+            background-color: #003d80;
+        }
+
+/* Update .clear-button to be more specific */
+.sidebar .clear-button {
+    background-color: #007bff; /* Matches the Submit button color */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto; /* Pushes it to the bottom */
+    display: block;
+    text-align: center;
+}
+
+    .sidebar .clear-button:hover {
+        background-color: #0056b3;
+    }
+
+    .sidebar .clear-button:active {
+        background-color: #003d80;
+    }
+
+.searchbar {
+    margin-bottom: 16px; /* Add some space between the search bar and other elements */
+}
