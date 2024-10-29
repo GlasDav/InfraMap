@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An interactive mapping tool for displaying infrastructure data.",
   "main": "src/index.js",
-  "homepage": "https://glasdav.github.io/InfraMapNew",
+  "homepage": "https://glasdav.github.io/InfraMap",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
