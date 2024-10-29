@@ -71,10 +71,10 @@ const geoJsonFiles = [
     {
         name: 'Transmission Lines',
         subTypes: [
-            { name: 'Capacity < 132 kV', property: 'capacity_kv', value: '<132', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
-            { name: 'Capacity 132-220 kV', property: 'capacity_kv', value: '>=132<220', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
-            { name: 'Capacity 220-500 kV', property: 'capacity_kv', value: '>=220<500', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
-            { name: 'Capacity >= 500 kV', property: 'capacity_kv', value: '>=500', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' }
+            { name: 'Capacity < 132 kV', property: 'capacity_kv', value: 132, comparison: 'lt', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
+            { name: 'Capacity 132-220 kV', property: 'capacity_kv', minValue: 132, maxValue: 220, comparison: 'range', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
+            { name: 'Capacity 220-500 kV', property: 'capacity_kv', minValue: 220, maxValue: 500, comparison: 'range', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' },
+            { name: 'Capacity >= 500 kV', property: 'capacity_kv', value: 500, comparison: 'gte', url: '/InfraMap/data/Electricity_Transmission_Lines.geojson' }
         ]
     },
     {

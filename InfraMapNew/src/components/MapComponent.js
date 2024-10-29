@@ -90,17 +90,24 @@ const addGeoJSONLayer = (data, type, subType, property, value, searchText, map) 
     const filterFeature = (feature, file) => {
         let matchesProperty = false;
 
-        if (value === 'Other') {
-            // Collect all specified sub-type values for the current category
+        // Check if the sub-type has a specific comparison requirement (e.g., range or numeric value)
+        if (file.comparison === 'range') {
+            const { minValue, maxValue } = file;
+            matchesProperty = feature.properties[file.property] >= minValue && feature.properties[file.property] < maxValue;
+        } else if (file.comparison === 'lt') {
+            matchesProperty = feature.properties[file.property] < file.value;
+        } else if (file.comparison === 'gte') {
+            matchesProperty = feature.properties[file.property] >= file.value;
+        } else if (file.value === 'Other') {
+            // Handle 'Other' logic as you already have
             const specifiedValues = file.subTypes
-                .filter(sub => sub.value !== 'Other') // Exclude "Other" itself to avoid recursion
+                .filter(sub => sub.value !== 'Other')
                 .map(sub => sub.value);
 
-            // Match only if the property value is NOT in the specified values
-            matchesProperty = !specifiedValues.includes(feature.properties[property]);
+            matchesProperty = !specifiedValues.includes(feature.properties[file.property]);
         } else {
-            // Standard matching for non-"Other" sub-types
-            matchesProperty = feature.properties[property] === value;
+            // Default exact match for non-'Other' sub-types
+            matchesProperty = feature.properties[file.property] === file.value;
         }
 
         // Adjust searchText to handle multiple terms
@@ -116,6 +123,7 @@ const addGeoJSONLayer = (data, type, subType, property, value, searchText, map) 
 
         return matchesProperty && matchesSearchText;
     };
+
 
 
 
