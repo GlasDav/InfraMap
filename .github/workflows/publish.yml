@@ -1,0 +1,30 @@
+name: Publish Package
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'  # Only run when a version tag is pushed
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the package
+        run: npm run build  # Only if you have a build step
+
+      - name: Publish package
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
